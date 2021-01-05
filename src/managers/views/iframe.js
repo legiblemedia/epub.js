@@ -311,6 +311,13 @@ class IframeView {
 				height % this.layout.height > 0) {
 				height = Math.ceil(height / this.layout.height) * this.layout.height;
 			}
+
+			// HACK, TODO
+			// This is a temporary fix, need to revisit
+			const adjustedWindowHeight = window.innerHeight * 0.8;
+			const adjustedLayoutHeight = this.layout.height * 0.8;
+			const preferredHeight = Math.min(adjustedWindowHeight, adjustedLayoutHeight);
+			height = Math.max(preferredHeight, height);
 		}
 
 		// Only Resize if dimensions have changed or
